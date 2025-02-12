@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberbullying Detection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Basic Styling */
+        body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298), url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .static-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-in-out;
+    background: linear-gradient(to right, #00d2ff, #3a7bd5); /* Gradient from teal to light blue */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Only the gradient fills the text */
+}
+
+        /* Input Styling */
+        .form-control {
+            height: 200px;
+            border: 2px solid #28a745;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: box-shadow 0.3s ease;
+        }
+        .form-control:focus {
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.5);
+        }
+        /* Button Styling */
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+        /* Navbar Styling */
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+            font-size: 1.1rem;
+        }
+        .nav-link:hover {
+            color: #28a745 !important;
+        }
+        /* Result Styling */
+        .result {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .bullying {
+            background-color: #dc3545;
+            animation: pulse 2s infinite;
+        }
+        .non-bullying {
+            background-color: #28a745;
+            animation: fadeIn 1s ease-in-out;
+        }
+        /* Keyframes for Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Cyberbullying Detection Using Python</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="static-title">Cyberbullying Detection Using Python</div>
+        <form method="POST">
+            <div class="form-group">
+                <textarea name="text" class="form-control" rows="4" placeholder="Enter text to analyze..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Analyze</button>
+        </form>
+        {% if prediction is not none %}
+            <div class="result {% if prediction == 1 %}bullying{% else %}non-bullying{% endif %}">
+                {% if prediction == 1 %}
+                    Bullying
+                {% else %}
+                    Non-Bullying
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
